@@ -6,6 +6,8 @@ const noteRoutes = require("./routes/notes");
 const app = express();
 app.use(express.json());
 app.use(cors());
+const job = require("./cron");
+
 
 mongoose.connect(
   "mongodb+srv://poojarydeepak15:yashmith@cluster0.0rohejj.mongodb.net/?retryWrites=true&w=majority",
@@ -14,6 +16,8 @@ mongoose.connect(
     useUnifiedTopology: true,
   }
 );
+job.start();
+
 
 app.use("/api/notes", noteRoutes);
 
